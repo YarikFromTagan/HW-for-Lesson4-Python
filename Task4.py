@@ -12,7 +12,7 @@ import os
 os.system('cls')
 
 def write_file(st):
-    with open('file_Task5.txt', 'w') as data:
+    with open('file_Task4.txt', 'w') as data:
         data.write(st)
 
 def rnd(): # случайный коэффициент из заданного диапазона
@@ -25,28 +25,25 @@ def create_coeff(k): # список случайных коэффициенто�
 
 def create_poly(lst): # полином из списка коэффициентов
     str = ''
-    if len(lst) < 1:
-        str = 'x = 0'
-    else:
-        for i in range(len(lst)):
-            if i != len(lst) - 1 and lst[i] != 0 and i != len(lst) - 2:
-                if lst[i] == 1:
-                    str += f'x^{len(lst) - 1 - i}'
+    for i in range(len(lst)):
+        if i != len(lst) - 1 and lst[i] != 0 and i != len(lst) - 2:
+            if lst[i] == 1:
+                str += f'x^{len(lst) - 1 - i}'
+                str += ' + '
+            else:
+                str += f'{lst[i]}x^{len(lst) - 1 - i}'
+                str += ' + '
+        elif i == len(lst) - 2 and lst[i] != 0:
+            if lst[i] == 1:
+                str += 'x'
+            else:
+                str += f'{lst[i]}x'
+                if lst[i+1] != 0:
                     str += ' + '
-                else:
-                    str += f'{lst[i]}x^{len(lst) - 1 - i}'
-                    str += ' + '
-            elif i == len(lst) - 2 and lst[i] != 0:
-                if lst[i] == 1:
-                    str += 'x'
-                else:
-                    str += f'{lst[i]}x'
-                    if lst[i+1] != 0:
-                        str += ' + '
-            elif i == len(lst) - 1 and lst[i] != 0:
-                str += f'{lst[i]} = 0'
-            elif i == len(lst) - 1 and lst[i] == 0:
-                 str += ' = 0'
+        elif i == len(lst) - 1 and lst[i] != 0:
+            str += f'{lst[i]} = 0'
+        elif i == len(lst) - 1 and lst[i] == 0:
+            str += ' = 0'
 # уберём артефакты
         if lst[len(lst) - 1] == 0 and lst[len(lst) - 2] == 0:
             str = str[:-7] + ' = 0'
